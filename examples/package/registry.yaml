@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+# Example only. Generate real package definitions with scripts/new-package.sh.
+packages:
+  - type: github_release
+    name: owner/tool
+    repo_owner: owner
+    repo_name: tool
+    description: Example command-line tool
+    asset: tool-{{.OS}}-{{.Arch}}.tar.gz

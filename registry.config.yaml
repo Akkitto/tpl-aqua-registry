@@ -1,0 +1,26 @@
+# Generic repository configuration. Edit this file once after creating your repository.
+# This file is repository metadata; Aqua package definitions live under pkgs/**/registry.yaml.
+
+schema_version: 1
+
+registry:
+  display_name: Example Aqua Registry
+  description: Custom Aqua registry
+
+repository:
+  provider: github
+  owner: example-owner
+  name: aqua-registry
+  default_branch: master
+  # Leave empty to derive https://github.com/<owner>/<name> for mise.
+  public_url: ""
+
+mise:
+  generate: true
+  output: mise/registry.toml
+  # basename => owner/repository becomes repository.
+  # Explicit overrides below win. Duplicate generated aliases fail the build.
+  alias_strategy: basename
+  registry_cache_ttl: 1w
+  alias_overrides: {}
+  alias_excludes: []
