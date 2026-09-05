@@ -26,6 +26,7 @@ while IFS= read -r -d '' yaml_file; do
 done < <(find "${REPO_ROOT}" -type f \( -name '*.yaml' -o -name '*.yml' \) -not -path '*/.git/*' -print0)
 
 python3 -m py_compile "${SCRIPT_DIR}/render_mise.py"
+python3 -m unittest discover -s "${REPO_ROOT}/tests" -p 'test_*.py'
 shellcheck "${SCRIPT_DIR}"/*.sh
 actionlint "${REPO_ROOT}/.github/workflows/"*.yaml
 

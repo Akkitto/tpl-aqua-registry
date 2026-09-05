@@ -3,3 +3,5 @@ mise.local.toml
 .mise/
 .tmp/
 SHA256SUMS
+__pycache__/
+*.pyc
