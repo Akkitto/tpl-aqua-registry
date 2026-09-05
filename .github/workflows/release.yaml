@@ -1,0 +1,52 @@
+name: Release registry
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate SemVer tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          readonly tag="${GITHUB_REF_NAME}"
+          if [[ ! "${tag}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([+-][0-9A-Za-z.-]+)?$ ]]; then
+            printf 'error: release tag must be SemVer with v prefix: %s\n' "${tag}" >&2
+            exit 1
+          fi
+
+      - name: Install mise and repository tools
+        uses: jdx/mise-action@v4
+        with:
+          cache: true
+
+      - name: Validate registry
+        run: mise run check
+
+      - name: Build distributable artifacts
+        run: mise run release-artifacts
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "${GITHUB_REF_NAME}" \
+            registry.yaml \
+            mise/registry.toml \
+            SHA256SUMS \
+            --verify-tag \
+            --generate-notes
