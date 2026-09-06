@@ -2,6 +2,13 @@
 
 All notable changes to this template are documented here.
 
+## 1.0.3 - 2026-09-06
+
+- Make all repository shell scripts pass ShellCheck without broad rule suppression.
+- Preserve command-substitution exit status before marking derived values readonly, resolving SC2155 correctly.
+- Use expansion-safe quoting for intentional yq expressions, schema literals, and diagnostic text, resolving SC2016 without disabling it.
+- Keep the existing ShellCheck CI gate as regression protection for all shell scripts and shell tests.
+
 ## 1.0.2 - 2026-09-06
 
 - Fix first-run configuration when the repository contains no `pkgs/` directory yet.
