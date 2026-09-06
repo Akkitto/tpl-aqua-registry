@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-readonly REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+declare -r SCRIPT_DIR
+REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
+declare -r REPO_ROOT
 
 usage() {
   cat <<'USAGE'
@@ -19,7 +21,7 @@ USAGE
 }
 
 if ! command -v aqua >/dev/null 2>&1; then
-  printf 'error: aqua is required; run this through `mise run new-package -- ...` or install aqua on PATH\n' >&2
+  printf '%s\n' 'error: aqua is required; run this through mise run new-package -- ... or install aqua on PATH' >&2
   exit 127
 fi
 
@@ -49,8 +51,8 @@ if [[ -z "${package}" || "${package}" != */* || "${package}" == /* || "${package
   exit 2
 fi
 
-readonly DESTINATION_DIR="${REPO_ROOT}/pkgs/${package}"
-readonly DESTINATION_FILE="${DESTINATION_DIR}/registry.yaml"
+declare -r DESTINATION_DIR="${REPO_ROOT}/pkgs/${package}"
+declare -r DESTINATION_FILE="${DESTINATION_DIR}/registry.yaml"
 if [[ -e "${DESTINATION_FILE}" ]]; then
   printf 'error: package definition already exists: %s\n' "${DESTINATION_FILE}" >&2
   exit 1
@@ -67,7 +69,7 @@ if [[ "${latest_only}" == 'true' ]]; then
 fi
 
 {
-  printf '%s\n' '# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json'
+  printf "%s\n" "# yaml-language-server: \$schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json"
   aqua gr "${generator_args[@]}" "${package}"
 } > "${DESTINATION_FILE}"
 

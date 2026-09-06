@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-readonly REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
-readonly CONFIG_FILE="${REPO_ROOT}/registry.config.yaml"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+declare -r SCRIPT_DIR
+REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
+declare -r REPO_ROOT
+declare -r CONFIG_FILE="${REPO_ROOT}/registry.config.yaml"
 
 usage() {
   cat <<'USAGE'
@@ -23,7 +25,7 @@ USAGE
 }
 
 if ! command -v yq >/dev/null 2>&1; then
-  printf 'error: yq is required; run this through `mise run configure -- ...` or install yq on PATH\n' >&2
+  printf '%s\n' 'error: yq is required; run this through mise run configure -- ... or install yq on PATH' >&2
   exit 127
 fi
 

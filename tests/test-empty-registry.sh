@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
-readonly TEMP_ROOT="$(mktemp -d "${TMPDIR:-/tmp}/aqua-registry-empty-test.XXXXXXXX")"
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+declare -r REPO_ROOT
+TEMP_ROOT="$(mktemp -d "${TMPDIR:-/tmp}/aqua-registry-empty-test.XXXXXXXX")"
+declare -r TEMP_ROOT
 trap 'rm -rf -- "${TEMP_ROOT}"' EXIT
 
 mkdir -p -- "${TEMP_ROOT}/scripts"

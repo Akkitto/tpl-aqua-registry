@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-readonly REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
-readonly CHECKSUM_FILE="${REPO_ROOT}/SHA256SUMS"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+declare -r SCRIPT_DIR
+REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
+declare -r REPO_ROOT
+declare -r CHECKSUM_FILE="${REPO_ROOT}/SHA256SUMS"
 
 "${SCRIPT_DIR}/build.sh"
 
