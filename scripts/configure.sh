@@ -23,7 +23,7 @@ USAGE
 }
 
 if ! command -v yq >/dev/null 2>&1; then
-  printf 'error: yq is required; run `mise install` first\n' >&2
+  printf 'error: yq is required; run this through `mise run configure -- ...` or install yq on PATH\n' >&2
   exit 127
 fi
 

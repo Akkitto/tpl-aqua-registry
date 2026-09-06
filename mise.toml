@@ -1,28 +1,34 @@
 min_version = "2026.0.0"
 
-[tools]
-"aqua:aquaproj/aqua" = "latest"
-"aqua:mikefarah/yq" = "latest"
-"aqua:koalaman/shellcheck" = "latest"
-"aqua:rhysd/actionlint" = "latest"
-python = "3.13"
-
 [tasks.build]
 description = "Generate registry.yaml and mise/registry.toml"
 run = "./scripts/build.sh"
+tools.python = "3.13"
+tools."github:mikefarah/yq" = "latest"
 
 [tasks.check]
 description = "Validate sources and generated outputs"
 run = "./scripts/check.sh"
+tools.python = "3.13"
+tools."github:mikefarah/yq" = "latest"
+tools."github:koalaman/shellcheck" = "latest"
+tools."github:rhysd/actionlint" = "latest"
 
 [tasks.new-package]
 description = "Scaffold a package with aqua gr; pass arguments after --"
 run = "./scripts/new-package.sh"
+tools.python = "3.13"
+tools."github:aquaproj/aqua" = "latest"
+tools."github:mikefarah/yq" = "latest"
 
 [tasks.configure]
 description = "Configure repository metadata; pass arguments after --"
 run = "./scripts/configure.sh"
+tools.python = "3.13"
+tools."github:mikefarah/yq" = "latest"
 
 [tasks.release-artifacts]
 description = "Generate checksums for published registry artifacts"
 run = "./scripts/release-artifacts.sh"
+tools.python = "3.13"
+tools."github:mikefarah/yq" = "latest"

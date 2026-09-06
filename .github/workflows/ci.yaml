@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install mise and repository tools
+      - name: Install mise
         uses: jdx/mise-action@v4
         with:
           cache: true

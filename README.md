@@ -30,11 +30,7 @@ The repository intentionally separates editable package definitions from generat
 
 ## Bootstrap
 
-Install mise, trust this checkout according to your normal mise trust policy, then install the repository tooling:
-
-```text
-mise install
-```
+Install mise and trust this checkout according to your normal mise trust policy. Repository tools are task-scoped and are installed automatically when their task runs, so no separate bootstrap install is required.
 
 Configure the repository once:
 
@@ -46,6 +42,14 @@ mise run configure -- \
 ```
 
 Equivalent settings can be edited directly in `registry.config.yaml`.
+
+To pre-install every task-scoped tool, for example for CI images or offline preparation, use:
+
+```text
+mise install --include-task-tools
+```
+
+Bootstrap tools intentionally use mise's direct `github:` backend. In particular, the Aqua CLI is never installed through the Aqua backend, avoiding a dependency cycle before any Aqua registry is available.
 
 ## Add a package
 

@@ -19,7 +19,7 @@ USAGE
 }
 
 if ! command -v aqua >/dev/null 2>&1; then
-  printf 'error: aqua is required; run `mise install` first\n' >&2
+  printf 'error: aqua is required; run this through `mise run new-package -- ...` or install aqua on PATH\n' >&2
   exit 127
 fi
 
