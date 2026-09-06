@@ -2,6 +2,13 @@
 
 All notable changes to this template are documented here.
 
+## 1.0.1 - 2026-09-06
+
+- Fix fresh-clone bootstrap failure caused by installing the Aqua CLI through mise's Aqua backend.
+- Scope repository tools to the tasks that require them, so `configure` does not resolve unrelated tooling.
+- Bootstrap Aqua, yq, ShellCheck, and actionlint directly from GitHub Releases through mise's built-in GitHub backend.
+- Add regression tests for the bootstrap-safe mise task configuration.
+
 ## 1.0.0 - 2026-09-05
 
 - Add generic custom Aqua registry repository configuration.
