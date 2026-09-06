@@ -2,6 +2,13 @@
 
 All notable changes to this template are documented here.
 
+## 1.0.4 - 2026-09-06
+
+### Fixed
+
+- Ensure `tests/test-empty-registry.sh` uses ShellCheck-safe assignment followed by `declare -r` for command-derived readonly values.
+- Update GitHub Actions checkout from `actions/checkout@v4` to current `actions/checkout@v7`, removing the Node 20 deprecation warning.
+
 ## 1.0.3 - 2026-09-06
 
 - Make all repository shell scripts pass ShellCheck without broad rule suppression.
