@@ -2,6 +2,15 @@
 
 All notable changes to this template are documented here.
 
+## 1.0.5 - 2026-09-06
+
+### Fixed
+
+- Make all mise shell tasks invoke Bash explicitly so CI does not depend on POSIX executable bits.
+- Make shell-to-shell calls use `bash` explicitly, including build and empty-registry validation paths.
+- Add regression coverage simulating scripts with mode `0644`, matching Windows/NTFS or template-copy workflows that can lose executable metadata.
+- Keep executable bits in the Git index where supported while making them non-essential for correctness.
+
 ## 1.0.4 - 2026-09-06
 
 ### Fixed

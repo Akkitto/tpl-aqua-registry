@@ -7,7 +7,7 @@ REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
 declare -r REPO_ROOT
 declare -r CHECKSUM_FILE="${REPO_ROOT}/SHA256SUMS"
 
-"${SCRIPT_DIR}/build.sh"
+bash "${SCRIPT_DIR}/build.sh"
 
 (
   cd -- "${REPO_ROOT}"

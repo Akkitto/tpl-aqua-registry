@@ -20,7 +20,7 @@ require_command python3
 require_command shellcheck
 require_command actionlint
 
-"${SCRIPT_DIR}/build.sh"
+bash "${SCRIPT_DIR}/build.sh"
 
 # Parse all YAML files with yq so malformed source/config files fail validation.
 while IFS= read -r -d '' yaml_file; do
@@ -29,7 +29,7 @@ done < <(find "${REPO_ROOT}" -type f \( -name '*.yaml' -o -name '*.yml' \) -not 
 
 python3 -m py_compile "${SCRIPT_DIR}/render_mise.py"
 python3 -m unittest discover -s "${REPO_ROOT}/tests" -p 'test_*.py'
-"${REPO_ROOT}/tests/test-empty-registry.sh"
+bash "${REPO_ROOT}/tests/test-empty-registry.sh"
 shellcheck "${SCRIPT_DIR}"/*.sh "${REPO_ROOT}/tests/"*.sh
 actionlint "${REPO_ROOT}/.github/workflows/"*.yaml
 

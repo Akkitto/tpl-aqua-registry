@@ -86,4 +86,4 @@ if [[ -n "${alias_strategy}" ]]; then
   ALIAS_STRATEGY="${alias_strategy}" yq -i '.mise.alias_strategy = strenv(ALIAS_STRATEGY)' "${CONFIG_FILE}"
 fi
 
-"${SCRIPT_DIR}/build.sh"
+bash "${SCRIPT_DIR}/build.sh"

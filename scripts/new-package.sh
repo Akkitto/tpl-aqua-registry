@@ -73,5 +73,5 @@ fi
   aqua gr "${generator_args[@]}" "${package}"
 } > "${DESTINATION_FILE}"
 
-"${SCRIPT_DIR}/build.sh"
+bash "${SCRIPT_DIR}/build.sh"
 printf 'created %s\n' "${DESTINATION_FILE}"
