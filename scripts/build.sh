@@ -28,9 +28,12 @@ readonly CONFIG_JSON="${TEMP_DIR}/config.json"
 readonly REGISTRY_JSON="${TEMP_DIR}/registry.json"
 readonly MISE_OUTPUT_TMP="${TEMP_DIR}/mise.registry.toml"
 
-mapfile -d '' PACKAGE_FILES < <(
-  find "${REPO_ROOT}/pkgs" -type f -name registry.yaml -print0 | sort -z
-)
+PACKAGE_FILES=()
+if [[ -d "${REPO_ROOT}/pkgs" ]]; then
+  mapfile -d '' PACKAGE_FILES < <(
+    find "${REPO_ROOT}/pkgs" -type f -name registry.yaml -print0 | sort -z
+  )
+fi
 
 for package_file in "${PACKAGE_FILES[@]}"; do
   if [[ "$(yq -r '.packages | type' "${package_file}")" != '!!seq' ]]; then

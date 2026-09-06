@@ -27,7 +27,8 @@ done < <(find "${REPO_ROOT}" -type f \( -name '*.yaml' -o -name '*.yml' \) -not 
 
 python3 -m py_compile "${SCRIPT_DIR}/render_mise.py"
 python3 -m unittest discover -s "${REPO_ROOT}/tests" -p 'test_*.py'
-shellcheck "${SCRIPT_DIR}"/*.sh
+"${REPO_ROOT}/tests/test-empty-registry.sh"
+shellcheck "${SCRIPT_DIR}"/*.sh "${REPO_ROOT}/tests/"*.sh
 actionlint "${REPO_ROOT}/.github/workflows/"*.yaml
 
 if git -C "${REPO_ROOT}" rev-parse --is-inside-work-tree >/dev/null 2>&1; then

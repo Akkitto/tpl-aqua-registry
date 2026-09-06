@@ -2,6 +2,13 @@
 
 All notable changes to this template are documented here.
 
+## 1.0.2 - 2026-09-06
+
+- Fix first-run configuration when the repository contains no `pkgs/` directory yet.
+- Treat zero package definitions as a valid empty registry and generate `packages: []`.
+- Add a tracked `pkgs/README.md` so fresh clones expose the intended package-source layout.
+- Add regression coverage for the empty-registry build invariant.
+
 ## 1.0.1 - 2026-09-06
 
 - Fix fresh-clone bootstrap failure caused by installing the Aqua CLI through mise's Aqua backend.
